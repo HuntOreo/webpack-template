@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dev": "webpack --config webpack.dev.js"
+    "watch": "webpack --config webpack.dev.js && webpack serve --config webpack.dev.js",
+    "build:dev": "webpack --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js",
+    "deploy": "echo \"Alert: Set deployment destination!\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +19,8 @@
     "html-webpack-plugin": "^5.6.4",
     "style-loader": "^4.0.0",
     "webpack": "^5.101.3",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
     "@huntoreocodes/hunter-normalize": "^1.1.1"

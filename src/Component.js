@@ -1,5 +1,5 @@
 const Component = function () {
-  const element = document.createElement('div');
+  const element = document.createElement('h1');
 
   element.textContent = 'Hello World!';
 
