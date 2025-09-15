@@ -1,34 +1,20 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
 
-module.exports = {
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
+module.exports = merge(common, {
   mode: 'production',
-  entry: './src/index.js',
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'assets/[name][ext]',
-    clean: true,
+  devServer: {
+    watchFiles: ['./dist/index.html']
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/template.html'
-    }),
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.css$/i,
-        use: ['html-loader'],
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        use: 'asset/resource'
-      }
-    ]
-  }
-};
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new TerserPlugin(),
+    ],
+  },
+});
+
